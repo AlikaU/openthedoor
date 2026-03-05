@@ -1,0 +1,8 @@
+# Godot
+godot-game/.godot/
+godot-game/export/
+
+# Python
+__pycache__/
+*.pyc
+.env
