@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://jln4uwok5htk"]
+
+[ext_resource type="Script" uid="uid://myivfg2h5f0m" path="res://main.gd" id="1_glv2v"]
+
+[node name="Node2D" type="Node2D" unique_id=358204708]
+script = ExtResource("1_glv2v")
+
+[node name="Label" type="Label" parent="." unique_id=1705854184]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 48
