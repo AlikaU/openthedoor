@@ -4,7 +4,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	RenderingServer.set_default_clear_color(
+	Color.from_hsv(0.65, 0.8, 0.15)  # blue hue, vivid-ish, very dark value
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
