@@ -25,3 +25,9 @@ func _process(delta):
 	var screen = get_viewport_rect().size
 	if global_position.x > screen.x + 100:   # buffer past edge
 		queue_free()
+		
+func _on_body_entered(body):
+	print("is player: ", body.is_in_group("player"))
+	if body.is_in_group("player"):
+		body.eat_bubble()
+		queue_free()

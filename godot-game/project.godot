@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 DoorInput="*uid://dsxtefhqg88ix"
 
+[display]
+
+window/size/mode=2
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

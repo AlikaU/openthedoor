@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 900.0
 const JUMP_VELOCITY = -400.0
+const TRACTION = 2 # smaller number -> more slippery
 
+var numBubblesEaten = 0
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	#if not is_on_floor():
 		#velocity += get_gravity() * delta
@@ -29,6 +31,15 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_down"):  dir.y += 1
 	if Input.is_action_pressed("ui_up"):    dir.y -= 1
 
-	velocity = dir.normalized() * SPEED  # normalized stops diagonal being faster
-
+	if dir != Vector2.ZERO:
+		velocity = dir.normalized() * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta * TRACTION)
+		velocity.y = move_toward(velocity.y, 0, SPEED * delta * TRACTION)
+		
 	move_and_slide()
+	
+	
+func eat_bubble():
+	numBubblesEaten += 1
+	scale += Vector2(0.02, 0.02)
