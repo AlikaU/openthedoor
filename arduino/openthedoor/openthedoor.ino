@@ -7,26 +7,24 @@
  */
 
 #include <ezButton.h>
+const int PINS[] = {2, 3, 4};
+const int NUM_SWITCHES = 3;
+ezButton switches[NUM_SWITCHES] = {PINS[0], PINS[1], PINS[2]};
 
-ezButton toggleSwitch(3);  // create ezButton object that attach to pin 3;
 
 void setup() {
   Serial.begin(9600);
-  toggleSwitch.setDebounceTime(50); // set debounce time to 50 milliseconds
+  for (int i = 0; i < NUM_SWITCHES; i++) {
+    switches[i].setDebounceTime(50);
+  }
 }
 
 void loop() {
-  toggleSwitch.loop(); // MUST call the loop() function first
-
-  if (toggleSwitch.isPressed())
-    Serial.println("The switch: OFF -> ON");
-
-  if (toggleSwitch.isReleased())
-    Serial.println("The switch: ON -> OFF");
-
-  // int state = toggleSwitch.getState();
-  // if (state == HIGH)
-  //   Serial.println("The switch: OFF");
-  // else
-  //   Serial.println("The switch: ON");
+  for (int i = 0; i < NUM_SWITCHES; i++) {
+    switches[i].loop();
+    if (switches[i].isPressed())
+      Serial.println("Switch " + String(PINS[i]) + ": OFF -> ON");
+    if (switches[i].isReleased())
+      Serial.println("Switch " + String(PINS[i]) + ": ON -> OFF");
+  }
 }
