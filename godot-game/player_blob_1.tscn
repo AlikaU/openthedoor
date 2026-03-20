@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2rcivjy4l62d"]
 
-[ext_resource type="Script" uid="uid://ihybpm8jm5p3" path="res://player_blob_1.gd" id="1_w6fgr"]
-[ext_resource type="Texture2D" uid="uid://dcaap3uveob2u" path="res://circle.png" id="2_gqy5b"]
+[ext_resource type="Script" uid="uid://cral0mefmnurl" path="res://player_blob_1.gd" id="1_w6fgr"]
+[ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://assets/sprites/player_blob.tres" id="3_3o18w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqy5b"]
 radius = 470.4
@@ -9,10 +9,11 @@ radius = 470.4
 [node name="PlayerBlob1" type="CharacterBody2D" unique_id=399304156 groups=["player"]]
 script = ExtResource("1_w6fgr")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2075864865]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_gqy5b")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395498600]
 scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_gqy5b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=782995024]
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_3o18w")
+animation = &"idle"

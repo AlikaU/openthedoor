@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://myivfg2h5f0m" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://ca3161f8wfrd1" path="res://bubble_spawner.gd" id="2_uu6xs"]
-[ext_resource type="PackedScene" uid="uid://2rcivjy4l62d" path="res://player_blob_1.tscn" id="3_r0du0"]
 
 [node name="World" type="Node2D" unique_id=358204708]
 script = ExtResource("1_glv2v")
@@ -22,6 +21,7 @@ color = Color(0.32238716, 0.2078366, 0.49164093, 1)
 offset_right = 40.0
 offset_bottom = 67.0
 theme_override_font_sizes/font_size = 48
+metadata/_edit_use_anchors_ = true
 
 [node name="EatenBubbleCountLabel" type="Label" parent="CanvasLayer" unique_id=319833415]
 offset_left = 1.0
@@ -33,5 +33,5 @@ theme_override_font_sizes/font_size = 48
 [node name="BubbleSpawner" type="Node2D" parent="." unique_id=502664368]
 script = ExtResource("2_uu6xs")
 
-[node name="PlayerBlob1" parent="." unique_id=399304156 instance=ExtResource("3_r0du0")]
-position = Vector2(1568, 1130)
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=646415811]
+position = Vector2(275, 175)
