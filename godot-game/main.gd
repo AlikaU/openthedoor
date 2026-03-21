@@ -49,6 +49,8 @@ func toggle_blob(id):
 		spawn_blob(id)
 
 func spawn_blob(id):
+	if blob_instances[id] != null:
+		return
 	# kill any dying blob that's still in the tree
 	var existing = get_node_or_null("dying_blob_" + id)
 	if existing:
@@ -59,6 +61,8 @@ func spawn_blob(id):
 	blob_instances[id] = blob
 
 func despawn_blob(id):
+	if blob_instances[id] == null:
+		return
 	var dying = blob_instances[id]
 	blob_instances[id] = null
 	dying.name = "dying_blob_" + id  # rename so we can find it later
