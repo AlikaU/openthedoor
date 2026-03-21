@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://assets/sprites/player_blob.tres" id="3_3o18w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqy5b"]
-radius = 470.4
+radius = 53.333332
 
 [node name="PlayerBlob1" type="CharacterBody2D" unique_id=399304156 groups=["player"]]
 script = ExtResource("1_w6fgr")
@@ -14,6 +14,5 @@ scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_gqy5b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=782995024]
-scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_3o18w")
 animation = &"idle"
