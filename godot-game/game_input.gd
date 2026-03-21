@@ -19,22 +19,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if udp.get_available_packet_count() > 0:
 		var msg = udp.get_packet().get_string_from_utf8().strip_edges()
-		if "4: ON -> OFF" in msg:
-			door_open = true
-		if "4: OFF -> ON" in msg:
-			door_open = false
-		if "2: ON -> OFF" in msg:
-			shiny_in_the_house = false
-			shiny_left.emit()
-		if "2: OFF -> ON" in msg:
-			shiny_in_the_house = true
-			shiny_entered.emit()
-		if "3: ON -> OFF" in msg:
-			fluffy_in_the_house = false
-			fluffy_left.emit()
-		if "3: OFF -> ON" in msg:
-			fluffy_in_the_house = true
-			fluffy_entered.emit()
+		var data = JSON.parse_string(msg)
+		if data:
+			var on = data.get("on", false)
+			match data.get("name", ""):
+				"shiny":
+					shiny_in_the_house = on
+					if on: shiny_entered.emit()
+					else: shiny_left.emit()
+				"fluffy":
+					fluffy_in_the_house = on
+					if on: fluffy_entered.emit()
+					else: fluffy_left.emit()
+				"door":
+					door_open = !on
 
 	# keyboard fallback
 	if Input.is_action_pressed("ui_accept"):
