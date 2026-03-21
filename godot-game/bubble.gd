@@ -1,6 +1,6 @@
 extends Node2D
 
-var velocity = Vector2(1000, 0)  # starts moving right
+var velocity = Vector2(300, 0)  # starts moving right
 
 func _ready():
 	# randomly pick warm reds OR pinks/purples
@@ -11,19 +11,19 @@ func _ready():
 
 func _process(delta):
 	# nudge velocity randomly each frame — the "wind"
-	velocity.x += randf_range(-600, 300) * delta
-	velocity.y += randf_range(-1500, 1500) * delta
+	velocity.x += randf_range(-300, 150) * delta
+	velocity.y += randf_range(-500, 500) * delta
 	
 	# clamp so it doesn't go crazy fast or drift backwards
-	velocity.x = clamp(velocity.x, 300, 1000)   # always moves right, just faster/slower
-	velocity.y = clamp(velocity.y, -1000, 1000)    # limited vertical range
+	velocity.x = clamp(velocity.x, 150, 300)   # always moves right, just faster/slower
+	velocity.y = clamp(velocity.y, -300, 300)    # limited vertical range
 	
 	position += velocity * delta
 	
 	
 	# disappear off screen
 	var screen = get_viewport_rect().size
-	if global_position.x > screen.x + 100:   # buffer past edge
+	if global_position.x > screen.x + 50:   # buffer past edge
 		queue_free()
 		
 func _on_body_entered(body):

@@ -11,5 +11,5 @@ func _process(delta):
 
 func spawn_bubble():
 	var bubble = Bubble.instantiate()
-	bubble.position = Vector2(-200, randf_range(600, 1200))  # random height on left edge
+	bubble.position = Vector2(-20, randf_range(300, 600))  # random height on left edge
 	get_parent().add_child(bubble)

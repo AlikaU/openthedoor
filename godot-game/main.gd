@@ -20,11 +20,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if debugLabel.visible:
+		var home = []
+		if GameInput.shiny_in_the_house: home.append("shiny")
+		if GameInput.fluffy_in_the_house: home.append("fluffy")
+		var who = "" if home else "nobody is home"
 		var bubbles = str(blob_instances["shiny"].numBubblesEaten) if blob_instances["shiny"] else "—"
-		debugLabel.text = "door: %s\nshiny: %s\nfluffy: %s\nbubbles: %s" % [
-			GameInput.door_open, GameInput.shiny_in_the_house,
-			GameInput.fluffy_in_the_house, bubbles
-		]
+		var door_status = "open" if GameInput.door_open else "closed"
+		debugLabel.text = "door: %s\n%s\nbubbles: %s" % [door_status, who, bubbles]
 
 
 func _on_debug_toggled():
