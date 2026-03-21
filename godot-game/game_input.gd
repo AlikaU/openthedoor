@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_released("ui_accept"):
 		door_open = true
 
-	if Input.is_action_just_pressed("spawn_blob1"):
+	if Input.is_action_just_pressed("spawn_shiny"):
 		if shiny_in_the_house:
 			shiny_in_the_house = false
 			shiny_left.emit()
