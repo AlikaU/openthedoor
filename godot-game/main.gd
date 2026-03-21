@@ -12,12 +12,12 @@ var blob_scenes = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	blob_scenes = {1: PlayerBlob1, 2: PlayerBlob2}
-	DoorInput.shiny_entered.connect(_on_shiny_entered)
-	DoorInput.shiny_left.connect(_on_shiny_left)
+	GameInput.shiny_entered.connect(_on_shiny_entered)
+	GameInput.shiny_left.connect(_on_shiny_left)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	doorOpenLabel.text = "door open: " + str(DoorInput.door_open) + "\nshiny in the house: " + str(DoorInput.shiny_in_the_house)
+	doorOpenLabel.text = "door open: " + str(GameInput.door_open) + "\nshiny in the house: " + str(GameInput.shiny_in_the_house)
 	if blob_instances[1] != null:
 		eatenBubblesCountLabel.text = "bubbles eaten: " + str(blob_instances[1].numBubblesEaten)
 

@@ -5,7 +5,7 @@ var timer = 0.0
 
 func _process(delta):
 	timer += delta
-	if timer > 0.2 && DoorInput.door_open:
+	if timer > 0.2 && GameInput.door_open:
 		timer = 0.0
 		spawn_bubble()
 
