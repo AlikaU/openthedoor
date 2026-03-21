@@ -4,6 +4,7 @@ signal shiny_entered
 signal shiny_left
 signal fluffy_entered
 signal fluffy_left
+signal debug_toggled
 
 var udp = PacketPeerUDP.new()
 var door_open = false
@@ -55,6 +56,9 @@ func _process(delta: float) -> void:
 		else:
 			fluffy_in_the_house = true
 			fluffy_entered.emit()
+
+	if Input.is_action_just_pressed("toggle_debug"):
+		debug_toggled.emit()
 
 	if Input.is_action_just_pressed("ui_cancel"):  # Escape key
 		get_tree().quit()

@@ -2650,18 +2650,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.32238716, 0.2078366, 0.49164093, 1)
 
-[node name="DoorLabel" type="Label" parent="CanvasLayer" unique_id=1705854184]
+[node name="DebugLabel" type="Label" parent="CanvasLayer" unique_id=1705854184]
+visible = false
 offset_right = 40.0
 offset_bottom = 67.0
 theme_override_font_sizes/font_size = 48
 metadata/_edit_use_anchors_ = true
-
-[node name="EatenBubbleCountLabel" type="Label" parent="CanvasLayer" unique_id=319833415]
-offset_left = 1.0
-offset_top = 145.0
-offset_right = 41.0
-offset_bottom = 212.0
-theme_override_font_sizes/font_size = 48
 
 [node name="BubbleSpawner" type="Node2D" parent="." unique_id=502664368]
 script = ExtResource("2_uu6xs")

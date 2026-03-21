@@ -6,8 +6,7 @@ const Fluffy = preload("res://fluffy.tscn")
 var blob_instances = {"shiny": null, "fluffy": null}
 var blob_scenes = {}
 
-@onready var doorOpenLabel = $CanvasLayer/DoorLabel
-@onready var eatenBubblesCountLabel = $CanvasLayer/EatenBubbleCountLabel
+@onready var debugLabel = $CanvasLayer/DebugLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,13 +15,20 @@ func _ready() -> void:
 	GameInput.shiny_left.connect(_on_shiny_left)
 	GameInput.fluffy_entered.connect(_on_fluffy_entered)
 	GameInput.fluffy_left.connect(_on_fluffy_left)
+	GameInput.debug_toggled.connect(_on_debug_toggled)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	doorOpenLabel.text = "door open: " + str(GameInput.door_open) + "\nshiny in the house: " + str(GameInput.shiny_in_the_house)
-	if blob_instances["shiny"] != null:
-		eatenBubblesCountLabel.text = "bubbles eaten: " + str(blob_instances["shiny"].numBubblesEaten)
+	if debugLabel.visible:
+		var bubbles = str(blob_instances["shiny"].numBubblesEaten) if blob_instances["shiny"] else "—"
+		debugLabel.text = "door: %s\nshiny: %s\nfluffy: %s\nbubbles: %s" % [
+			GameInput.door_open, GameInput.shiny_in_the_house,
+			GameInput.fluffy_in_the_house, bubbles
+		]
 
+
+func _on_debug_toggled():
+	debugLabel.visible = !debugLabel.visible
 
 func _on_shiny_entered():
 	spawn_blob("shiny")
