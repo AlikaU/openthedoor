@@ -2,10 +2,13 @@ extends Node
 
 signal shiny_entered
 signal shiny_left
+signal fluffy_entered
+signal fluffy_left
 
 var udp = PacketPeerUDP.new()
 var door_open = false
 var shiny_in_the_house = false
+var fluffy_in_the_house = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +29,12 @@ func _process(delta: float) -> void:
 		if "2: OFF -> ON" in msg:
 			shiny_in_the_house = true
 			shiny_entered.emit()
+		if "3: ON -> OFF" in msg:
+			fluffy_in_the_house = false
+			fluffy_left.emit()
+		if "3: OFF -> ON" in msg:
+			fluffy_in_the_house = true
+			fluffy_entered.emit()
 
 	# keyboard fallback
 	if Input.is_action_pressed("ui_accept"):
@@ -40,6 +49,14 @@ func _process(delta: float) -> void:
 		else:
 			shiny_in_the_house = true
 			shiny_entered.emit()
+
+	if Input.is_action_just_pressed("spawn_fluffy"):
+		if fluffy_in_the_house:
+			fluffy_in_the_house = false
+			fluffy_left.emit()
+		else:
+			fluffy_in_the_house = true
+			fluffy_entered.emit()
 
 	if Input.is_action_just_pressed("ui_cancel"):  # Escape key
 		get_tree().quit()

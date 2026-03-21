@@ -14,6 +14,8 @@ func _ready() -> void:
 	blob_scenes = {"shiny": Shiny, "fluffy": Fluffy}
 	GameInput.shiny_entered.connect(_on_shiny_entered)
 	GameInput.shiny_left.connect(_on_shiny_left)
+	GameInput.fluffy_entered.connect(_on_fluffy_entered)
+	GameInput.fluffy_left.connect(_on_fluffy_left)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,15 +23,18 @@ func _process(delta: float) -> void:
 	if blob_instances["shiny"] != null:
 		eatenBubblesCountLabel.text = "bubbles eaten: " + str(blob_instances["shiny"].numBubblesEaten)
 
-	if Input.is_action_just_pressed("spawn_fluffy"):
-		toggle_blob("fluffy")
-
 
 func _on_shiny_entered():
 	spawn_blob("shiny")
 
 func _on_shiny_left():
 	despawn_blob("shiny")
+
+func _on_fluffy_entered():
+	spawn_blob("fluffy")
+
+func _on_fluffy_left():
+	despawn_blob("fluffy")
 
 func toggle_blob(id):
 	if blob_instances[id] != null:

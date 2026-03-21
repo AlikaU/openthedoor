@@ -15,7 +15,7 @@ ezButton switches[NUM_SWITCHES] = {PINS[0], PINS[1], PINS[2]};
 void setup() {
   Serial.begin(9600);
   for (int i = 0; i < NUM_SWITCHES; i++) {
-    switches[i].setDebounceTime(50);
+    switches[i].setDebounceTime(100);
   }
 }
 
