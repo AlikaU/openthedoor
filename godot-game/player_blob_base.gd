@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 900.0
-const JUMP_VELOCITY = -400.0
-const TRACTION = 2 # smaller number -> more slippery
+const SPEED = 450.0
+const TRACTION = 4 # smaller number -> more slippery
 
 var numBubblesEaten = 0
 
