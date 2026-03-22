@@ -24,9 +24,8 @@ func _process(delta: float) -> void:
 		if GameInput.shiny_in_the_house: home.append("shiny")
 		if GameInput.fluffy_in_the_house: home.append("fluffy")
 		var who = "" if home else "nobody is home"
-		var bubbles = str(blob_instances["shiny"].numBubblesEaten) if blob_instances["shiny"] else "—"
 		var door_status = "open" if GameInput.door_open else "closed"
-		debugLabel.text = "door: %s\n%s\nbubbles: %s" % [door_status, who, bubbles]
+		debugLabel.text = "door: %s\n%s\n" % [door_status, who]
 
 
 func _on_debug_toggled():

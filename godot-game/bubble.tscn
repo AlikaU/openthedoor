@@ -9,6 +9,8 @@ height = 32.0
 
 [node name="Bubble" type="RigidBody2D" unique_id=1534072021]
 gravity_scale = 0.0
+linear_damp = 0.2
+angular_damp = 0.2
 script = ExtResource("1_y2db8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1479167390]
