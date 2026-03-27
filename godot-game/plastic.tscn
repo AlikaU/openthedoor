@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bp60j6jolruhq"]
+
+[ext_resource type="PackedScene" uid="uid://caqp5t5t0w2ax" path="res://trash.tscn" id="1_psudf"]
+[ext_resource type="Script" uid="uid://dlliiwhmuvbn1" path="res://plastic.gd" id="2_eituy"]
+
+[node name="Trash" unique_id=1534072021 instance=ExtResource("1_psudf")]
+script = ExtResource("2_eituy")

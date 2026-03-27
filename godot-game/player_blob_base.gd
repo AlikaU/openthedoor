@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 250.0
 const TRACTION = 2 # smaller number -> more slippery
 
-var numBubblesEaten = 0
+var numTrashCollected = 0
 
 func _physics_process(delta: float) -> void:
 	var dir = Vector2.ZERO
@@ -34,8 +34,8 @@ func push_things_away():
 			collider.apply_central_impulse(direction * push_force)
 	
 	
-func eat_bubble():
-	numBubblesEaten += 1
+func collect_trash():
+	numTrashCollected += 1
 	scale += Vector2(0.02, 0.02)
 	
 func vanish():

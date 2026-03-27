@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://caqp5t5t0w2ax"]
 
-[ext_resource type="Script" uid="uid://1y07ohqbj7jk" path="res://bubble.gd" id="1_y2db8"]
-[ext_resource type="Texture2D" uid="uid://bdxf34cnbdfgx" path="res://assets/sprites/bottle.png" id="2_y2db8"]
+[ext_resource type="Script" uid="uid://oyf6fow4oah0" path="res://trash.gd" id="1_43he1"]
+[ext_resource type="Texture2D" uid="uid://bdxf34cnbdfgx" path="res://assets/sprites/bottle.png" id="2_76yqg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4a276"]
 radius = 8.0
 height = 32.0
 
-[node name="Bubble" type="RigidBody2D" unique_id=1534072021]
+[node name="Trash" type="RigidBody2D" unique_id=1534072021]
 gravity_scale = 0.0
 linear_damp = 0.2
 angular_damp = 0.2
-script = ExtResource("1_y2db8")
+script = ExtResource("1_43he1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1479167390]
 position = Vector2(4.053116e-06, -3.0875206e-05)
-texture = ExtResource("2_y2db8")
+texture = ExtResource("2_76yqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151927358]
 shape = SubResource("CapsuleShape2D_4a276")

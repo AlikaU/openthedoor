@@ -4,7 +4,7 @@
 
 A game with a physical toy home mirrored in a small digital world.
 When characters arrive or leave in the toy home through the chimney, their character appears or disappears in the game.
-The door opening causes bubbles to float into the in-game home.
+The door opening causes trash to float into the in-game home.
 
 ## Hardware
 
@@ -49,9 +49,9 @@ They spawn at a fixed SpawnPoint in the scene.
 When despawned they play a vanish animation before being freed.
 Double-spawn and double-despawn are guarded against.
 
-## Bubbles
+## Trash
 
-Bubbles spawn from the bottom of the scene when the door is open (every 1 second) and fly into the home.
+Trash spawns from the bottom of the scene when the door is open (every 1 second) and fly into the home.
 
 ## Scene structure (Main.tscn)
 
@@ -59,7 +59,7 @@ Bubbles spawn from the bottom of the scene when the door is open (every 1 second
   - CanvasLayer (layer -1, behind game world)
     - ColorRect (black background)
     - DebugLabel (hidden by default, F1 to toggle)
-  - BubbleSpawner — bubble_spawner.gd
+  - TrashSpawner — trash_spawner.gd
   - Tiles
     - floor (TileMapLayer)
     - walls (TileMapLayer)
@@ -88,8 +88,8 @@ Press **F1** to toggle the debug overlay, which shows:
 |------|---------|
 | `game_input.gd` | Hardware + keyboard input, signals |
 | `main.gd` | Blob lifecycle, debug label |
-| `bubble_spawner.gd` | Spawns bubbles when door open |
-| `bubble.gd` | Bubble color, motion, rotation |
+| `trash_spawner.gd` | Spawns trash when door open |
+| `trash.gd` | Trash color, motion, rotation |
 | `shiny.tscn` / `fluffy.tscn` | Blob scenes |
-| `bubble.tscn` | Bubble scene |
+| `trash.tscn` | Trash scene |
 | `arduino/openthedoor.ino` | Arduino firmware |
