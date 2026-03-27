@@ -25,13 +25,15 @@ func _process(delta: float) -> void:
 			var on = data.get("on", false)
 			match data.get("name", ""):
 				"shiny":
-					shiny_in_the_house = on
-					if on: shiny_entered.emit()
-					else: shiny_left.emit()
+					if on != shiny_in_the_house:
+						shiny_in_the_house = on
+						if on: shiny_entered.emit()
+						else: shiny_left.emit()
 				"fluffy":
-					fluffy_in_the_house = on
-					if on: fluffy_entered.emit()
-					else: fluffy_left.emit()
+					if on != fluffy_in_the_house:
+						fluffy_in_the_house = on
+						if on: fluffy_entered.emit()
+						else: fluffy_left.emit()
 				"door":
 					door_open = !on
 
