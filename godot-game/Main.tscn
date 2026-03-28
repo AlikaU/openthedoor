@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://myivfg2h5f0m" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://bbkjtxejxys2r" path="res://trash_spawner.gd" id="2_cm0pq"]
-[ext_resource type="TileSet" uid="uid://d3cgufhtmg1vp" path="res://assets/sprites/home.tres" id="3_r0du0"]
+[ext_resource type="TileSet" uid="uid://d3cgufhtmg1vp" path="res://art/sprites/home.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://bhegiilixvtms" path="res://pantry.gd" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://c73602bt52cqq" path="res://inventory/inv_ui.tscn" id="5_fos0i"]
 
 [node name="World" type="Node2D" unique_id=358204708]
 script = ExtResource("1_glv2v")
@@ -76,6 +77,12 @@ offset_right = 1185.0
 offset_bottom = 46.0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 2
+
+[node name="Shiny_UI" parent="CanvasLayer2" unique_id=245272351 instance=ExtResource("5_fos0i")]
+offset_left = 983.0
+offset_top = 314.0
+offset_right = 1025.0
+offset_bottom = 393.0
 
 [node name="Pantry" type="Node" parent="." unique_id=1959046479]
 script = ExtResource("4_cm0pq")

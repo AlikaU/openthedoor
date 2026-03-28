@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c73602bt52cqq"]
+
+[ext_resource type="Script" uid="uid://d3igspwj6ybw8" path="res://inventory/inv_ui.gd" id="1_f2u1w"]
+[ext_resource type="Texture2D" uid="uid://ccyaqriiacqb2" path="res://art/inventory/inventory-background.png" id="2_w82yi"]
+[ext_resource type="PackedScene" uid="uid://cvjwe0vdeoege" path="res://inventory/inv_ui_slot.tscn" id="3_dn3an"]
+
+[node name="Inv_UI" type="Control" unique_id=245272351]
+custom_minimum_size = Vector2(42, 187)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 42.0
+offset_bottom = 187.0
+script = ExtResource("1_f2u1w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=535183308]
+layout_mode = 0
+offset_right = 42.0
+offset_bottom = 188.0
+texture = ExtResource("2_w82yi")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect" unique_id=759870013]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.5
+offset_top = -88.0
+offset_right = 24.0
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inv_UI_slot" parent="NinePatchRect/GridContainer" unique_id=447708221 instance=ExtResource("3_dn3an")]
+layout_mode = 2
+
+[node name="inv_UI_slot2" parent="NinePatchRect/GridContainer" unique_id=1184011333 instance=ExtResource("3_dn3an")]
+layout_mode = 2
+
+[node name="inv_UI_slot3" parent="NinePatchRect/GridContainer" unique_id=153288562 instance=ExtResource("3_dn3an")]
+layout_mode = 2
+
+[node name="inv_UI_slot4" parent="NinePatchRect/GridContainer" unique_id=1405070427 instance=ExtResource("3_dn3an")]
+layout_mode = 2
+
+[node name="inv_UI_slot5" parent="NinePatchRect/GridContainer" unique_id=940514028 instance=ExtResource("3_dn3an")]
+layout_mode = 2

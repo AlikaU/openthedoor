@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4nxob8y1xc6f"]
 
 [ext_resource type="Script" uid="uid://cral0mefmnurl" path="res://blob_shiny.gd" id="1_w6fgr"]
-[ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://assets/sprites/player_blob.tres" id="3_3o18w"]
+[ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://art/sprites/player_blob.tres" id="3_3o18w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqy5b"]
 radius = 470.4

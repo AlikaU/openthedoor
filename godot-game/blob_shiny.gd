@@ -1,6 +1,7 @@
 extends "res://blob_base.gd"
 
 @export var inv: Inv
+
 func _ready():
 	action_left = "shiny_left"
 	action_right = "shiny_right"

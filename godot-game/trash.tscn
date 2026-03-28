@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://caqp5t5t0w2ax"]
 
 [ext_resource type="Script" uid="uid://oyf6fow4oah0" path="res://trash.gd" id="1_43he1"]
-[ext_resource type="Texture2D" uid="uid://bdxf34cnbdfgx" path="res://assets/sprites/bottle.png" id="2_76yqg"]
+[ext_resource type="Texture2D" uid="uid://bdxf34cnbdfgx" path="res://art/sprites/bottle.png" id="2_76yqg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4a276"]
 radius = 8.0

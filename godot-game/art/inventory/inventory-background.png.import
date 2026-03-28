@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://73akhaa5gihh"
-path="res://.godot/imported/fluffy.png-04b666ba3396fc4766a3aa729df96db0.ctex"
+uid="uid://ccyaqriiacqb2"
+path="res://.godot/imported/inventory-background.png-75d9e8af3c21685f07953e0f0bb27273.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fluffy.png"
-dest_files=["res://.godot/imported/fluffy.png-04b666ba3396fc4766a3aa729df96db0.ctex"]
+source_file="res://art/inventory/inventory-background.png"
+dest_files=["res://.godot/imported/inventory-background.png-75d9e8af3c21685f07953e0f0bb27273.ctex"]
 
 [params]
 

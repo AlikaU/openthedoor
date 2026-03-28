@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddxjna4w8hg1d"
-path="res://.godot/imported/spritesheet.png-7638db6a5eba954db8cc30e4dc7e2105.ctex"
+path="res://.godot/imported/spritesheet.png-29a3606aaead761172be6e4722a3d952.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/directional_smoke_burst_001_small_white/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-7638db6a5eba954db8cc30e4dc7e2105.ctex"]
+source_file="res://art/sprites/directional_smoke_burst_001_small_white/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-29a3606aaead761172be6e4722a3d952.ctex"]
 
 [params]
 
