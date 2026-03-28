@@ -1,4 +1,4 @@
-extends "res://player_blob_base.gd"
+extends "res://blob_base.gd"
 
 func _ready():
 	action_left = "fluffy_left"

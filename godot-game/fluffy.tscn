@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://creuwobx22pcu"]
 
-[ext_resource type="Script" uid="uid://wd473jakiy37" path="res://player_blob_2.gd" id="1_qpb0r"]
+[ext_resource type="Script" uid="uid://wd473jakiy37" path="res://blob_fluffy.gd" id="1_qpb0r"]
 [ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://assets/sprites/player_blob.tres" id="3_pf76y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqy5b"]
