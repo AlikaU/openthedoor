@@ -14,5 +14,5 @@ func _process(delta):
 
 func _spawn_trash():
 	var trash = trash_types.pick_random().instantiate()
-	trash.position = Vector2(randf_range(370, 390), 695)
+	trash.position = Vector2(randf_range(340, 370), 715)
 	get_parent().add_child(trash)
