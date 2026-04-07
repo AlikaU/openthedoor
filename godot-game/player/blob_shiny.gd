@@ -1,4 +1,4 @@
-extends "res://blob_base.gd"
+extends "res://player/blob_base.gd"
 
 @export var inv: Inv
 

@@ -1,7 +1,7 @@
 extends Node2D
 
-const Shiny = preload("res://shiny.tscn")
-const Fluffy = preload("res://fluffy.tscn")
+const Shiny = preload("res://player/shiny.tscn")
+const Fluffy = preload("res://player/fluffy.tscn")
 
 var blob_instances = {"shiny": null, "fluffy": null}
 var blob_scenes = {}
