@@ -18,12 +18,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if debugLabel.visible:
-		var home = []
-		if GameInput.shiny_in_the_house: home.append("shiny")
-		if GameInput.fluffy_in_the_house: home.append("fluffy")
-		var who = "" if home else "nobody is home"
 		var door_status = "open" if GameInput.door_open else "closed"
-		debugLabel.text = "door: %s\n%s\n" % [door_status, who]
+		debugLabel.text = "door: %s" % door_status
 
 func _on_debug_toggled():
 	debugLabel.visible = !debugLabel.visible

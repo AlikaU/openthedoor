@@ -6,6 +6,15 @@
 [ext_resource type="Script" uid="uid://bhegiilixvtms" path="res://pantry.gd" id="4_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://c73602bt52cqq" path="res://inventory/inv_ui.tscn" id="5_fos0i"]
 
+[sub_resource type="Gradient" id="Gradient_fos0i"]
+offsets = PackedFloat32Array(0.42227378, 0.53828305)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3dxm6"]
+gradient = SubResource("Gradient_fos0i")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
 [node name="World" type="Node2D" unique_id=358204708]
 script = ExtResource("1_glv2v")
 
@@ -62,13 +71,24 @@ position = Vector2(387, 793)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=124552116]
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=1687074545]
+offset_left = 1.0
+offset_top = 599.0
+offset_right = 1283.0
+offset_bottom = 722.0
+texture = SubResource("GradientTexture2D_3dxm6")
+
 [node name="MessageLabel" type="Label" parent="CanvasLayer2" unique_id=223536056]
-offset_left = 466.0
-offset_top = 622.0
-offset_right = 845.0
-offset_bottom = 678.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -50.0
+offset_right = -40.0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="FoodLabel" type="Label" parent="CanvasLayer2" unique_id=1074388782]
 offset_left = 1145.0

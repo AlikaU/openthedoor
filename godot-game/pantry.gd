@@ -1,15 +1,23 @@
 extends Node
 
-var food: int = 20
+var food: int = 35
 var food_timer: float = 0.0
 var message_timer: float = 0.0
 var game_over: bool = false
 var tint_overlay: ColorRect
 
+var first_time_home: bool = true
+var shown_food_30_warning: bool = false
+var shown_shiny_hint: bool = false
+var shown_fluffy_hint: bool = false
+
 const FOOD_DEPLETION_INTERVAL = 1.0
-const MESSAGE_DURATION = 4.0
-const EARLY_WARNING_THRESHOLD = 20
-const URGENT_THRESHOLD = 10
+const MESSAGE_DURATION = 5.0
+const THRESHOLD_30 = 30
+const THRESHOLD_20 = 20
+const THRESHOLD_12 = 12
+const THRESHOLD_8 = 8
+
 const FOOD_TYPES = ["apples", "carrots", "eggs", "potatoes", "bananas", "tomatoes"]
 const ARRIVE_VERBS = ["came home with", "scavenged", "found", "returned with", "brought"]
 
@@ -19,17 +27,19 @@ const ARRIVE_VERBS = ["came home with", "scavenged", "found", "returned with", "
 func _ready() -> void:
 	GameInput.shiny_entered.connect(_on_shiny_entered)
 	GameInput.fluffy_entered.connect(_on_fluffy_entered)
-	_setup_tint_overlay()
+	_setup_overlays()
 	_update_food_label()
+	messageLabel.text = GameText.NOBODY_HOME_FIRST
 
-func _setup_tint_overlay() -> void:
+func _setup_overlays() -> void:
+	var canvas = $"/root/World/CanvasLayer2"
+
 	tint_overlay = ColorRect.new()
 	tint_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
-	tint_overlay.color = Color(0.5, 0.0, 0.35, 0.0)
+	tint_overlay.color = Color(0.4, 0.05, 0.1, 0.0)
 	tint_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var canvas = $"/root/World/CanvasLayer2"
 	canvas.add_child(tint_overlay)
-	canvas.move_child(tint_overlay, 0)
+	canvas.move_child(tint_overlay, 1)
 
 func _process(delta: float) -> void:
 	if game_over:
@@ -44,6 +54,9 @@ func _process(delta: float) -> void:
 			food -= 1
 			_update_food_label()
 			_update_tint()
+			if food < THRESHOLD_30 and not shown_food_30_warning:
+				shown_food_30_warning = true
+				_show_timed(GameText.FOOD_30)
 			if food <= 0:
 				food = 0
 				_trigger_game_over()
@@ -57,12 +70,16 @@ func _process(delta: float) -> void:
 	else:
 		_update_message()
 
+func _show_timed(text: String) -> void:
+	messageLabel.text = text
+	message_timer = MESSAGE_DURATION
+
 func _update_tint() -> void:
 	var alpha: float = 0.0
-	if food <= URGENT_THRESHOLD:
-		alpha = lerp(0.15, 0.5, float(URGENT_THRESHOLD - food) / float(URGENT_THRESHOLD))
-	elif food < EARLY_WARNING_THRESHOLD:
-		alpha = lerp(0.0, 0.15, float(EARLY_WARNING_THRESHOLD - food) / float(EARLY_WARNING_THRESHOLD - URGENT_THRESHOLD))
+	if food <= THRESHOLD_8:
+		alpha = lerp(0.35, 0.55, float(THRESHOLD_8 - food) / float(THRESHOLD_8))
+	elif food < THRESHOLD_12:
+		alpha = lerp(0.0, 0.35, float(THRESHOLD_12 - food) / float(THRESHOLD_12 - THRESHOLD_8))
 	tint_overlay.color.a = alpha
 
 func _on_shiny_entered() -> void:
@@ -72,14 +89,22 @@ func _on_fluffy_entered() -> void:
 	_character_arrived("fluffy")
 
 func _character_arrived(who: String) -> void:
+	first_time_home = false
 	var amount = randi_range(8, 13)
 	var food_type = FOOD_TYPES[randi() % FOOD_TYPES.size()]
 	var verb = ARRIVE_VERBS[randi() % ARRIVE_VERBS.size()]
 	food += amount
 	_update_food_label()
 	_update_tint()
-	messageLabel.text = "%s %s %d %s." % [who, verb, amount, food_type]
-	message_timer = MESSAGE_DURATION
+	_show_timed("%s %s %d %s." % [who.capitalize(), verb, amount, food_type])
+	if who == "shiny" and not shown_shiny_hint:
+		shown_shiny_hint = true
+		await get_tree().create_timer(MESSAGE_DURATION).timeout
+		_show_timed(GameText.HINT_ARROW_KEYS)
+	elif who == "fluffy" and not shown_fluffy_hint:
+		shown_fluffy_hint = true
+		await get_tree().create_timer(MESSAGE_DURATION).timeout
+		_show_timed(GameText.HINT_WASD)
 
 func _update_food_label() -> void:
 	foodLabel.text = "food: %d" % food
@@ -87,15 +112,18 @@ func _update_food_label() -> void:
 func _update_message() -> void:
 	var someone_home = GameInput.shiny_in_the_house or GameInput.fluffy_in_the_house
 	if not someone_home:
-		messageLabel.text = ""
-	elif food < URGENT_THRESHOLD:
-		messageLabel.text = "go out now! leave the same way you came in."
-	elif food < EARLY_WARNING_THRESHOLD:
-		messageLabel.text = "food is running low. go outside soon."
+		messageLabel.text = GameText.NOBODY_HOME_FIRST if first_time_home else GameText.NOBODY_HOME
+		return
+	if food < THRESHOLD_8:
+		messageLabel.text = GameText.FOOD_8
+	elif food < THRESHOLD_12:
+		messageLabel.text = GameText.FOOD_12
+	elif food < THRESHOLD_20:
+		messageLabel.text = GameText.FOOD_20
 	else:
 		messageLabel.text = ""
 
 func _trigger_game_over() -> void:
 	game_over = true
 	var victim = "fluffy" if GameInput.fluffy_in_the_house else "shiny"
-	messageLabel.text = "game over. %s died of starvation." % victim
+	messageLabel.text = GameText.GAME_OVER % victim.capitalize()
