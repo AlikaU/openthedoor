@@ -7,6 +7,7 @@
 radius = 54.974743
 
 [node name="PlayerBlob2" type="CharacterBody2D" unique_id=399304156 groups=["player"]]
+scale = Vector2(2, 2)
 modulate = Color(0.29411766, 0.79607844, 0.3254902, 1)
 script = ExtResource("1_qpb0r")
 

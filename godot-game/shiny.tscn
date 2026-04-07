@@ -1,13 +1,14 @@
-[gd_scene format=3 uid="uid://c5bbm403onbwh"]
+[gd_scene format=3 uid="uid://2rcivjy4l62d"]
 
 [ext_resource type="Script" uid="uid://cral0mefmnurl" path="res://blob_shiny.gd" id="1_l0a2o"]
-[ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://art/sprites/player_blob.tres" id="2_qobkv"]
+[ext_resource type="SpriteFrames" path="res://art/sprites/player_blob.tres" id="2_qobkv"]
 [ext_resource type="Resource" uid="uid://ngrdkchh4e1v" path="res://inventory/player_inventory.tres" id="2_vdofo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqy5b"]
 radius = 53.333332
 
 [node name="PlayerBlob1" type="CharacterBody2D" unique_id=399304156 groups=["player"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_l0a2o")
 inv = ExtResource("2_vdofo")
 
