@@ -6,6 +6,9 @@ const Fluffy = preload("res://player/fluffy.tscn")
 var blob_instances = {"shiny": null, "fluffy": null}
 var blob_scenes = {}
 
+var shown_shiny_hint: bool = false
+var shown_fluffy_hint: bool = false
+
 @onready var debugLabel = $CanvasLayer/DebugLabel
 
 func _ready() -> void:
@@ -26,12 +29,18 @@ func _on_debug_toggled():
 
 func _on_shiny_entered():
 	spawn_blob("shiny")
+	if not shown_shiny_hint:
+		shown_shiny_hint = true
+		TextManager.push(TextManager.HINT_ARROW_KEYS)
 
 func _on_shiny_left():
 	despawn_blob("shiny")
 
 func _on_fluffy_entered():
 	spawn_blob("fluffy")
+	if not shown_fluffy_hint:
+		shown_fluffy_hint = true
+		TextManager.push(TextManager.HINT_WASD)
 
 func _on_fluffy_left():
 	despawn_blob("fluffy")
