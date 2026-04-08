@@ -1,9 +1,7 @@
 extends Node2D
 
 const Plastic = preload("res://plastic.tscn")
-const ElectronicPart = preload("res://electronic_part.tscn")
 
-var trash_types = [Plastic, ElectronicPart]
 var timer = 0.0
 
 func _process(delta):
@@ -13,6 +11,6 @@ func _process(delta):
 		_spawn_trash()
 
 func _spawn_trash():
-	var trash = trash_types.pick_random().instantiate()
+	var trash = Plastic.instantiate()
 	trash.position = Vector2(randf_range(340, 370), 715)
 	get_parent().add_child(trash)

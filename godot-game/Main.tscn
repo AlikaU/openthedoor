@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://jln4uwok5htk"]
 
 [ext_resource type="Script" uid="uid://myivfg2h5f0m" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="Texture2D" uid="uid://cogad23jpcx0f" path="res://art/background/test.png" id="2_3dxm6"]
 [ext_resource type="Script" uid="uid://bbkjtxejxys2r" path="res://trash_spawner.gd" id="2_cm0pq"]
 [ext_resource type="TileSet" uid="uid://d3cgufhtmg1vp" path="res://art/sprites/home.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://bhegiilixvtms" path="res://pantry.gd" id="4_cm0pq"]
@@ -30,6 +31,11 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="background" type="TextureRect" parent="CanvasLayer" unique_id=1686712617]
+offset_right = 1290.0
+offset_bottom = 865.0
+texture = ExtResource("2_3dxm6")
 
 [node name="DebugLabel" type="Label" parent="CanvasLayer" unique_id=1705854184]
 anchors_preset = -1
@@ -72,10 +78,11 @@ position = Vector2(387, 793)
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=124552116]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=1687074545]
+visible = false
 offset_left = 1.0
-offset_top = 599.0
+offset_top = 452.0
 offset_right = 1283.0
-offset_bottom = 722.0
+offset_bottom = 866.0
 texture = SubResource("GradientTexture2D_3dxm6")
 
 [node name="MessageLabel" type="Label" parent="CanvasLayer2" unique_id=223536056]
@@ -86,6 +93,8 @@ anchor_bottom = 1.0
 offset_left = 40.0
 offset_top = -50.0
 offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 autowrap_mode = 3
