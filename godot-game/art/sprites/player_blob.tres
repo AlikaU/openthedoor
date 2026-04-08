@@ -1,7 +1,24 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://fu8egn7dmrqg"]
 
 [ext_resource type="Texture2D" uid="uid://73akhaa5gihh" path="res://art/sprites/fluffy.png" id="1_00ven"]
+[ext_resource type="Texture2D" uid="uid://dxy31pjsy2s88" path="res://art/sprites/shiny.png" id="1_a3168"]
 [ext_resource type="Texture2D" uid="uid://ddxjna4w8hg1d" path="res://art/sprites/directional_smoke_burst_001_small_white/spritesheet.png" id="2_01sin"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5xxc"]
+atlas = ExtResource("1_a3168")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6j06"]
+atlas = ExtResource("1_a3168")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86oaa"]
+atlas = ExtResource("1_00ven")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3168"]
+atlas = ExtResource("1_00ven")
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b03fr"]
 atlas = ExtResource("2_01sin")
@@ -89,14 +106,23 @@ region = Rect2(640, 0, 32, 32)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5xxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6j06")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_00ven")
+"texture": SubResource("AtlasTexture_86oaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3168")
 }],
 "loop": false,
 "name": &"idle",

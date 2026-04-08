@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2rcivjy4l62d"]
 
 [ext_resource type="Script" uid="uid://cral0mefmnurl" path="res://player/blob_shiny.gd" id="1_l0a2o"]
-[ext_resource type="SpriteFrames" path="res://art/sprites/player_blob.tres" id="2_qobkv"]
+[ext_resource type="SpriteFrames" uid="uid://fu8egn7dmrqg" path="res://art/sprites/player_blob.tres" id="2_qobkv"]
 [ext_resource type="Resource" uid="uid://ngrdkchh4e1v" path="res://inventory/player_inventory.tres" id="2_vdofo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqy5b"]
@@ -18,4 +18,4 @@ shape = SubResource("CircleShape2D_gqy5b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=782995024]
 sprite_frames = ExtResource("2_qobkv")
-animation = &"idle"
+animation = &"vanish"

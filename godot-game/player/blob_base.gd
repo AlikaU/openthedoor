@@ -11,6 +11,9 @@ var action_right = "ui_right"
 var action_up = "ui_up"
 var action_down = "ui_down"
 
+func _ready():
+	$AnimatedSprite2D.play("default")
+
 func _physics_process(delta: float) -> void:
 	var dir = Vector2.ZERO
 
