@@ -9,9 +9,7 @@ var first_time_home: bool = true
 var shiny_first_entry: bool = true
 var fluffy_first_entry: bool = true
 var shown_food_hint: bool = false
-var shown_food_low: bool = false
-var shown_food_leave: bool = false
-var shown_food_urgent: bool = false
+var prev_food: int = -1
 
 const FOOD_DEPLETION_INTERVAL = 1.0
 const THRESHOLD_HINT = 30
@@ -59,15 +57,13 @@ func _process(delta: float) -> void:
 			if food < THRESHOLD_HINT and not shown_food_hint:
 				shown_food_hint = true
 				TextManager.push(TextManager.FOOD_HINT)
-			elif food < THRESHOLD_LOW and not shown_food_low:
-				shown_food_low = true
+			if prev_food >= THRESHOLD_LOW and food < THRESHOLD_LOW:
 				TextManager.push(TextManager.FOOD_LOW)
-			elif food < THRESHOLD_LEAVE and not shown_food_leave:
-				shown_food_leave = true
+			if prev_food >= THRESHOLD_LEAVE and food < THRESHOLD_LEAVE:
 				TextManager.push(TextManager.FOOD_LEAVE)
-			elif food < THRESHOLD_URGENT and not shown_food_urgent:
-				shown_food_urgent = true
+			if prev_food >= THRESHOLD_URGENT and food < THRESHOLD_URGENT:
 				TextManager.push(TextManager.FOOD_URGENT, true)
+			prev_food = food
 			if food <= 0:
 				food = 0
 				_trigger_game_over()
@@ -79,6 +75,7 @@ func _on_shiny_entered() -> void:
 	var food_type = FOOD_TYPES[randi() % FOOD_TYPES.size()]
 	var verb = ARRIVE_VERBS[randi() % ARRIVE_VERBS.size()]
 	food += amount
+	prev_food = food
 	_update_food_label()
 	_update_tint()
 	if not shiny_first_entry:
@@ -92,6 +89,7 @@ func _on_fluffy_entered() -> void:
 	var food_type = FOOD_TYPES[randi() % FOOD_TYPES.size()]
 	var verb = ARRIVE_VERBS[randi() % ARRIVE_VERBS.size()]
 	food += amount
+	prev_food = food
 	_update_food_label()
 	_update_tint()
 	if not fluffy_first_entry:

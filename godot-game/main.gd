@@ -31,7 +31,7 @@ func _on_shiny_entered():
 	spawn_blob("shiny")
 	if not shown_shiny_hint:
 		shown_shiny_hint = true
-		TextManager.push(TextManager.HINT_ARROW_KEYS)
+		TextManager.push(TextManager.HINT_ARROW_KEYS, false, TextManager.HINT_DURATION)
 
 func _on_shiny_left():
 	despawn_blob("shiny")
@@ -40,7 +40,7 @@ func _on_fluffy_entered():
 	spawn_blob("fluffy")
 	if not shown_fluffy_hint:
 		shown_fluffy_hint = true
-		TextManager.push(TextManager.HINT_WASD)
+		TextManager.push(TextManager.HINT_WASD, false, TextManager.HINT_DURATION)
 
 func _on_fluffy_left():
 	despawn_blob("fluffy")
