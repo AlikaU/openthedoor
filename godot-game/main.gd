@@ -9,7 +9,7 @@ var blob_scenes = {}
 var shown_shiny_hint: bool = false
 var shown_fluffy_hint: bool = false
 
-@onready var debugLabel = $CanvasLayer/DebugLabel
+@onready var debugLabel = $CanvasLayer2/doorlabel
 
 func _ready() -> void:
 	blob_scenes = {"shiny": Shiny, "fluffy": Fluffy}

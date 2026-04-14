@@ -1,9 +1,8 @@
 extends Node
 
-var food: int = 35
 var food_timer: float = 0.0
 var game_over: bool = false
-var tint_overlay: ColorRect
+var starving_overlay: Control
 
 var first_time_home: bool = true
 var shiny_first_entry: bool = true
@@ -11,11 +10,14 @@ var fluffy_first_entry: bool = true
 var shown_food_hint: bool = false
 var prev_food: int = -1
 
+const INITIAL_FOOD = 20
 const FOOD_DEPLETION_INTERVAL = 1.0
 const THRESHOLD_HINT = 20
 const THRESHOLD_LOW = 15
 const THRESHOLD_LEAVE = 10
 const THRESHOLD_URGENT = 5
+
+var food: int = INITIAL_FOOD
 
 const FOOD_TYPES = ["apples", "carrots", "eggs", "potatoes", "bananas", "tomatoes"]
 const ARRIVE_VERBS = ["came home with", "scavenged", "found", "returned with", "brought"]
@@ -24,22 +26,14 @@ const ARRIVE_VERBS = ["came home with", "scavenged", "found", "returned with", "
 
 func _ready() -> void:
 	TextManager.message_label = $"/root/World/CanvasLayer2/MessageLabel"
+	starving_overlay = $"/root/World/CanvasLayer2/StarvingOverlay"
+	$"/root/World/CanvasLayer2/GameOverOverlay/Button".pressed.connect(_on_play_again)
 	GameInput.shiny_entered.connect(_on_shiny_entered)
 	GameInput.shiny_left.connect(_on_someone_left)
 	GameInput.fluffy_entered.connect(_on_fluffy_entered)
 	GameInput.fluffy_left.connect(_on_someone_left)
-	_setup_tint()
 	_update_food_label()
 	TextManager.show_now(TextManager.NOBODY_HOME_FIRST)
-
-func _setup_tint() -> void:
-	var canvas = $"/root/World/CanvasLayer2"
-	tint_overlay = ColorRect.new()
-	tint_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
-	tint_overlay.color = Color(0.4, 0.05, 0.1, 0.0)
-	tint_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	canvas.add_child(tint_overlay)
-	canvas.move_child(tint_overlay, 1)
 
 func _process(delta: float) -> void:
 	if game_over:
@@ -113,7 +107,18 @@ func _update_tint() -> void:
 		alpha = lerp(0.35, 0.55, float(THRESHOLD_URGENT - food) / float(THRESHOLD_URGENT))
 	elif food < THRESHOLD_LEAVE:
 		alpha = lerp(0.0, 0.35, float(THRESHOLD_LEAVE - food) / float(THRESHOLD_LEAVE - THRESHOLD_URGENT))
-	tint_overlay.color.a = alpha
+	starving_overlay.visible = alpha > 0.0
+	starving_overlay.modulate.a = alpha
+
+func _on_play_again() -> void:
+	$"/root/World/CanvasLayer2/GameOverOverlay".visible = false
+	game_over = false
+	food = INITIAL_FOOD
+	prev_food = food
+	shown_food_hint = false
+	_update_food_label()
+	starving_overlay.visible = false
+	TextManager.clear_now()
 
 func _trigger_game_over() -> void:
 	game_over = true
@@ -124,6 +129,6 @@ func _trigger_game_over() -> void:
 		victims.append("Fluffy")
 	var who = " and ".join(victims)
 	var overlay = $"/root/World/CanvasLayer2/GameOverOverlay"
-	overlay.get_node("Label").text = "Game over. %s died of starvation." % who
+	overlay.get_node("Label").text = "%s died of starvation." % who
 	overlay.visible = true
 	TextManager.clear_now()
