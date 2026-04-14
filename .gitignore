@@ -2,6 +2,14 @@
 godot-game/.godot/
 godot-game/export/
 
+# Exported builds
+godot-game/*.x86_64
+godot-game/*.pck
+godot-game/*.sh
+godot-game/*.exe
+godot-game/*.app
+godot-game/*.zip
+
 # Python
 __pycache__/
 *.pyc

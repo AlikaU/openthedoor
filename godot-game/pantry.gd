@@ -11,7 +11,7 @@ var fluffy_first_entry: bool = true
 var shown_food_hint: bool = false
 var prev_food: int = -1
 
-const FOOD_DEPLETION_INTERVAL = 1.0
+const FOOD_DEPLETION_INTERVAL = 0.75
 const THRESHOLD_HINT = 30
 const THRESHOLD_LOW = 20
 const THRESHOLD_LEAVE = 12

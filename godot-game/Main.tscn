@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://d3cgufhtmg1vp" path="res://art/sprites/home.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://bhegiilixvtms" path="res://pantry.gd" id="4_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://c73602bt52cqq" path="res://inventory/inv_ui.tscn" id="5_fos0i"]
+[ext_resource type="Texture2D" uid="uid://c0kn6hmwhk686" path="res://art/background/game_end.png" id="6_lgr22"]
 
 [sub_resource type="Gradient" id="Gradient_fos0i"]
 offsets = PackedFloat32Array(0.42227378, 0.53828305)
@@ -33,6 +34,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="background" type="TextureRect" parent="CanvasLayer" unique_id=1686712617]
+visible = false
 offset_right = 1290.0
 offset_bottom = 865.0
 texture = ExtResource("2_3dxm6")
@@ -78,11 +80,10 @@ position = Vector2(387, 793)
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=124552116]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=1687074545]
-visible = false
 offset_left = 1.0
 offset_top = 452.0
-offset_right = 1283.0
-offset_bottom = 866.0
+offset_right = 1281.0
+offset_bottom = 836.0
 texture = SubResource("GradientTexture2D_3dxm6")
 
 [node name="MessageLabel" type="Label" parent="CanvasLayer2" unique_id=223536056]
@@ -108,10 +109,23 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 2
 
 [node name="Shiny_UI" parent="CanvasLayer2" unique_id=245272351 instance=ExtResource("5_fos0i")]
+visible = false
 offset_left = 1101.0
 offset_top = 272.0
 offset_right = 1143.0
 offset_bottom = 459.0
+
+[node name="GameOverOverlay" type="Control" parent="CanvasLayer2" unique_id=105495335]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/GameOverOverlay" unique_id=426768382]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("6_lgr22")
 
 [node name="Pantry" type="Node" parent="." unique_id=1959046479]
 script = ExtResource("4_cm0pq")
