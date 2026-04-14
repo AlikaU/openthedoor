@@ -11,11 +11,11 @@ var fluffy_first_entry: bool = true
 var shown_food_hint: bool = false
 var prev_food: int = -1
 
-const FOOD_DEPLETION_INTERVAL = 0.75
-const THRESHOLD_HINT = 30
-const THRESHOLD_LOW = 20
-const THRESHOLD_LEAVE = 12
-const THRESHOLD_URGENT = 8
+const FOOD_DEPLETION_INTERVAL = 1.0
+const THRESHOLD_HINT = 20
+const THRESHOLD_LOW = 15
+const THRESHOLD_LEAVE = 10
+const THRESHOLD_URGENT = 5
 
 const FOOD_TYPES = ["apples", "carrots", "eggs", "potatoes", "bananas", "tomatoes"]
 const ARRIVE_VERBS = ["came home with", "scavenged", "found", "returned with", "brought"]
@@ -71,6 +71,10 @@ func _process(delta: float) -> void:
 func _on_shiny_entered() -> void:
 	first_time_home = false
 	TextManager.clear_now()
+	if shiny_first_entry:
+		shiny_first_entry = false
+		return
+	shiny_first_entry = false
 	var amount = randi_range(8, 13)
 	var food_type = FOOD_TYPES[randi() % FOOD_TYPES.size()]
 	var verb = ARRIVE_VERBS[randi() % ARRIVE_VERBS.size()]
@@ -78,13 +82,15 @@ func _on_shiny_entered() -> void:
 	prev_food = food
 	_update_food_label()
 	_update_tint()
-	if not shiny_first_entry:
-		TextManager.push("Shiny %s %d %s." % [verb, amount, food_type])
-	shiny_first_entry = false
+	TextManager.push("Shiny %s %d %s." % [verb, amount, food_type])
 
 func _on_fluffy_entered() -> void:
 	first_time_home = false
 	TextManager.clear_now()
+	if fluffy_first_entry:
+		fluffy_first_entry = false
+		return
+	fluffy_first_entry = false
 	var amount = randi_range(8, 13)
 	var food_type = FOOD_TYPES[randi() % FOOD_TYPES.size()]
 	var verb = ARRIVE_VERBS[randi() % ARRIVE_VERBS.size()]
@@ -92,9 +98,7 @@ func _on_fluffy_entered() -> void:
 	prev_food = food
 	_update_food_label()
 	_update_tint()
-	if not fluffy_first_entry:
-		TextManager.push("Fluffy %s %d %s." % [verb, amount, food_type])
-	fluffy_first_entry = false
+	TextManager.push("Fluffy %s %d %s." % [verb, amount, food_type])
 
 func _on_someone_left() -> void:
 	if not GameInput.shiny_in_the_house and not GameInput.fluffy_in_the_house:
@@ -113,5 +117,13 @@ func _update_tint() -> void:
 
 func _trigger_game_over() -> void:
 	game_over = true
-	var victim = "fluffy" if GameInput.fluffy_in_the_house else "shiny"
-	TextManager.show_now(TextManager.GAME_OVER % victim.capitalize())
+	var victims: Array = []
+	if GameInput.shiny_in_the_house:
+		victims.append("Shiny")
+	if GameInput.fluffy_in_the_house:
+		victims.append("Fluffy")
+	var who = " and ".join(victims)
+	var overlay = $"/root/World/CanvasLayer2/GameOverOverlay"
+	overlay.get_node("Label").text = "Game over. %s died of starvation." % who
+	overlay.visible = true
+	TextManager.clear_now()

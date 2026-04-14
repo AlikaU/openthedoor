@@ -79,6 +79,21 @@ position = Vector2(387, 793)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=124552116]
 
+[node name="StarvingOverlay" type="Control" parent="CanvasLayer2" unique_id=1358910533]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/StarvingOverlay" unique_id=1177108837]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 86.0
+offset_right = 1128.0
+offset_bottom = 679.0
+color = Color(0.12517792, 0.05338102, 0.22528425, 1)
+
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=1687074545]
 offset_left = 1.0
 offset_top = 452.0
@@ -116,6 +131,7 @@ offset_right = 1143.0
 offset_bottom = 459.0
 
 [node name="GameOverOverlay" type="Control" parent="CanvasLayer2" unique_id=105495335]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -126,6 +142,11 @@ layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("6_lgr22")
+
+[node name="Label" type="Label" parent="CanvasLayer2/GameOverOverlay" unique_id=257892389]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Pantry" type="Node" parent="." unique_id=1959046479]
 script = ExtResource("4_cm0pq")
