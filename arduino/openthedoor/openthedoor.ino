@@ -2,7 +2,7 @@
 #include <ezButton.h>
 
 const int NUM_SWITCHES = 3;
-const char* NAMES[] = {"shiny", "fluffy", "door"};
+const int PINS[] = {2, 3, 4};
 ezButton switches[NUM_SWITCHES] = {2, 3, 4};
 unsigned long lastHeartbeat = 0;
 
@@ -28,7 +28,7 @@ void loop() {
 
 void sendState(int i, bool on) {
   JsonDocument doc;
-  doc["name"] = NAMES[i];
+  doc["pin"] = PINS[i];
   doc["on"] = on;
   serializeJson(doc, Serial);
   Serial.println();

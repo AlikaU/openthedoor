@@ -23,18 +23,18 @@ func _process(delta: float) -> void:
 		var data = JSON.parse_string(msg)
 		if data:
 			var on = data.get("on", false)
-			match data.get("name", ""):
-				"shiny":
+			match int(data.get("pin", -1)):
+				2:  # shiny
 					if on != shiny_in_the_house:
 						shiny_in_the_house = on
 						if on: shiny_entered.emit()
 						else: shiny_left.emit()
-				"fluffy":
+				3:  # fluffy
 					if on != fluffy_in_the_house:
 						fluffy_in_the_house = on
 						if on: fluffy_entered.emit()
 						else: fluffy_left.emit()
-				"door":
+				4:  # door
 					door_open = !on
 
 	# keyboard fallback
