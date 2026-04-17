@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://myivfg2h5f0m" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="Texture2D" uid="uid://cogad23jpcx0f" path="res://art/background/test.png" id="2_3dxm6"]
-[ext_resource type="Texture2D" uid="uid://dlti7lj11wmww" path="res://art/background/background_trees.png" id="2_03owx"]
 [ext_resource type="Script" uid="uid://bbkjtxejxys2r" path="res://trash_spawner.gd" id="2_cm0pq"]
 [ext_resource type="TileSet" uid="uid://d3cgufhtmg1vp" path="res://art/sprites/home.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://bhegiilixvtms" path="res://pantry.gd" id="4_cm0pq"]
@@ -12,7 +11,7 @@
 
 [sub_resource type="Gradient" id="Gradient_fos0i"]
 offsets = PackedFloat32Array(0.42227378, 0.53828305)
-colors = PackedColorArray(0.34242037, 0.21173438, 0.3654826, 0, 0.35243997, 0.20880002, 0.36, 1)
+colors = PackedColorArray(0.057600003, 0.061013333, 0.16, 0, 0.05882353, 0.05490196, 0.1882353, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3dxm6"]
 gradient = SubResource("Gradient_fos0i")
@@ -44,7 +43,7 @@ color = Color(0, 0, 0, 1)
 [node name="background trees" type="TextureRect" parent="CanvasLayer" unique_id=1092517638]
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = ExtResource("2_03owx")
+texture = ExtResource("8_03owx")
 
 [node name="background" type="TextureRect" parent="CanvasLayer" unique_id=1686712617]
 visible = false
